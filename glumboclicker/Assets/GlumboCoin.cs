@@ -8,14 +8,21 @@ public class GlumboCoin : MonoBehaviour
     [SerializeField]float decel = 0.1f;
     [SerializeField]float staticF = 5f;
     [SerializeField]float lerpSpd = 0.1f;
+    [SerializeField] ParticleSystem particle;
+    [SerializeField] Main main;
     float currentSpd = 0f;
     float rot = 0f;
+    int maxGenerated = 1;
     void Start(){
         UpdateTransform();
     }
 
     public void Spin(){
         currentSpd += accel;
+        particle.Play();
+        int coinsGenerated = Random.Range(1, maxGenerated+1);
+        particle.emission.SetBurst(0, new ParticleSystem.Burst(0f, coinsGenerated));
+        main.AddRemoveCoins(coinsGenerated);
     }
     private void UpdateTransform(){
         transform.rotation = Quaternion.Euler(0f,rot+180,0f);
