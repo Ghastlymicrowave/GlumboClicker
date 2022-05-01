@@ -25,7 +25,7 @@ public class GlumboCoin : MonoBehaviour
         main.AddRemoveCoins(coinsGenerated);
     }
     private void UpdateTransform(){
-        transform.rotation = Quaternion.Euler(0f,rot+180,0f);
+        transform.localRotation = Quaternion.Euler(0f,rot,0f);
     }
     void Update()
     {
